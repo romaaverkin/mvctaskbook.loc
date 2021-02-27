@@ -20,10 +20,19 @@
                 <?php endforeach; ?>
             </table>
         </div>
-        <div>
+        <div class="pagination my_pagination">
+            <?php if ($page > 1): ?>
+                <a href="/?sort=<?= $sorting ?>&sort_type=<?= $sorting_type ?>&page=<?= $page - 1 ?>"
+                   class="btn btn-primary"><<</a>
+            <?php endif; ?>
             <?php for ($i = 1; $i <= $total_page; $i++): ?>
-                <a href="/?sort=<?= $sorting ?>&sort_type=<?= $sorting_type ?>&page=<?= $i ?>"><?= $i ?></a>
+                <a href="/?sort=<?= $sorting ?>&sort_type=<?= $sorting_type ?>&page=<?= $i ?>"
+                   class="btn btn-primary"><?= $i ?></a>
             <?php endfor; ?>
+            <?php if ($i - 1 > $page): ?>
+                <a href="/?sort=<?= $sorting ?>&sort_type=<?= $sorting_type ?>&page=<?= $page + 1 ?>"
+                   class="btn btn-primary">>></a>
+            <?php endif; ?>
         </div>
     </div>
 </section>

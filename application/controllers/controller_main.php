@@ -16,7 +16,6 @@ class Controller_Main extends Controller
         if (!array_search($sorting_type, $sorting_type_array)) $sorting_type = 'asc';
 
         $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
-
         $num_per_page = 3;
         $start_from = ($page - 1) * 3;
 
@@ -27,6 +26,6 @@ class Controller_Main extends Controller
 
         $data = $task_model->get_task_list($sorting, $sorting_type, $start_from, $num_per_page);
 
-        $this->view->generate('main_view.php', 'template_view.php', $data, $total_page, $sorting, $sorting_type);
+        $this->view->generate('main_view.php', 'template_view.php', $data, $page, $total_page, $sorting, $sorting_type);
     }
 }
