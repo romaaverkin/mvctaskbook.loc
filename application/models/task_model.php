@@ -3,17 +3,8 @@
 
 class Task_Model extends Model
 {
-    public function get_task_list($start_from, $num_per_page)
+    public function get_task_list($sorting, $sorting_type, $start_from, $num_per_page)
     {
-        $sorting_array = array("login", "email", "performed");
-        $sorting_type_array = array("asc", "desc");
-
-        $sorting = isset($_GET['sort']) ? htmlspecialchars($_GET['sort']) : 'login';
-        $sorting_type = isset($_GET['sort_type']) ? htmlspecialchars($_GET['sort_type']) : 'asc';
-
-        if (!array_search($sorting, $sorting_array)) $sorting = 'login';
-        if (!array_search($sorting_type, $sorting_type_array)) $sorting_type = 'asc';
-
         $pdo = $this->db();
         $query = $pdo->prepare("SELECT users.login, users.email, tasks.task, tasks.performed
                                         FROM `tasks`
