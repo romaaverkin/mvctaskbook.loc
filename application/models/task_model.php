@@ -19,8 +19,7 @@ class Task_Model extends Model
                                         FROM `tasks`
                                         JOIN `users`
                                         ON tasks.user_id = users.id
-                                        ORDER BY $sorting $sorting_type
-                                        LIMIT 3");
+                                        ORDER BY $sorting $sorting_type");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
