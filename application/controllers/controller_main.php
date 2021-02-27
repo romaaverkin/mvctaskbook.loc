@@ -21,8 +21,12 @@ class Controller_Main extends Controller
         $start_from = ($page - 1) * 3;
 
         $task_model = $this->require_model('task_model');
+        $total_record = $task_model->count_row();
+
+        $total_page = ceil($total_record / $num_per_page);
+
         $data = $task_model->get_task_list($sorting, $sorting_type, $start_from, $num_per_page);
 
-        $this->view->generate('main_view.php', 'template_view.php', $data);
+        $this->view->generate('main_view.php', 'template_view.php', $data, $total_page, $sorting, $sorting_type);
     }
 }
