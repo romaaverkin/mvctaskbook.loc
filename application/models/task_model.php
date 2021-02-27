@@ -3,7 +3,7 @@
 
 class Task_Model extends Model
 {
-    public function get_task_list()
+    public function get_task_list($start_from, $num_per_page)
     {
         $sorting_array = array("login", "email", "performed");
         $sorting_type_array = array("asc", "desc");
@@ -19,7 +19,8 @@ class Task_Model extends Model
                                         FROM `tasks`
                                         JOIN `users`
                                         ON tasks.user_id = users.id
-                                        ORDER BY $sorting $sorting_type");
+                                        ORDER BY $sorting $sorting_type
+                                        LIMIT $start_from, $num_per_page");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
