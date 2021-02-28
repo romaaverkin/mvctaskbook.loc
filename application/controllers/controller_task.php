@@ -13,7 +13,7 @@ class Controller_task extends Controller
             }
             else
             {
-                todo();
+                echo "Нет такого пользователя!";
             }
         }
         $this->view->generate('task_view.php', 'template_view.php');
