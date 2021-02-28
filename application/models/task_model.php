@@ -22,4 +22,30 @@ class Task_Model extends Model
         $query = $pdo->query("SELECT COUNT(*) FROM tasks");
         return $query->fetchColumn();
     }
+
+    public function add_task()
+    {
+        $login = isset($_POST['login']) ? $_POST['login'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $task = isset($_POST['task']) ? $_POST['task'] : '';
+
+        $pdo = $this->db();
+        $query = $pdo->query("SELECT id FROM users WHERE login='$login' AND email='$email'");
+        $user_id = $query->fetchColumn();
+
+        if ($user_id)
+        {
+            $query = $pdo->prepare('INSERT INTO tasks (id, user_id, task, performed) VALUES (NULL, :user_id, :task, 0)');
+            $result = $query->execute(array(
+                'user_id' => $user_id,
+                'task' => $task,
+            ));
+        }
+        else
+        {
+            $result = 0;
+        }
+
+        return $result;
+    }
 }
