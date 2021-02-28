@@ -26,7 +26,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Новая задача</a>
+                        <a class="nav-link" href="/task/add">Новая задача</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
