@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Войти</a>
+                        <a class="nav-link" href="/user/login">Войти</a>
                     </li>
                 </ul>
             </div>
