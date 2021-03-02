@@ -1,4 +1,7 @@
 <div class="container-xxl">
+    <h3><?= $data ?></h3>
+</div>
+<div class="container-xxl">
     <div class="row">
         <div class="panel-heading">Новая задача</div>
         <form action="/task/add/" method="post" enctype="multipart/form-data" id="addTaskForm">

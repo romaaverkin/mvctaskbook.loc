@@ -17,9 +17,13 @@ class Controller_task extends Controller
             }
             else
             {
-                echo "Нет такого пользователя!";
+                $data = "Неверный логин и/или пароль, пожалуйста введите правильные данные или зарегистрируютесь!";
+                $this->view->generate('task_view.php', 'template_view.php', $data);
             }
         }
-        $this->view->generate('task_view.php', 'template_view.php');
+        else
+        {
+            $this->view->generate('task_view.php', 'template_view.php');
+        }
     }
 }
