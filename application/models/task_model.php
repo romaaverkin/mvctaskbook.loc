@@ -23,12 +23,8 @@ class Task_Model extends Model
         return $query->fetchColumn();
     }
 
-    public function add_task()
+    public function add_task($login, $email, $task)
     {
-        $login = isset($_POST['login']) ? $_POST['login'] : '';
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $task = isset($_POST['task']) ? $_POST['task'] : '';
-
         $pdo = $this->db();
         $query = $pdo->query("SELECT id FROM users WHERE login='$login' AND email='$email'");
         $user_id = $query->fetchColumn();
