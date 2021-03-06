@@ -1,0 +1,55 @@
+<?php
+
+
+class User_Model extends Model
+{
+    public function login($email)
+    {
+        $pdo = $this->db();
+        $query = $pdo->query("SELECT COUNT(*) FROM `users` WHERE email = '$email'");
+        $count_user = $query->fetchColumn();
+        return $count_user;
+    }
+
+    public function get_task_list($sorting, $sorting_type, $start_from, $num_per_page)
+    {
+        $pdo = $this->db();
+        $query = $pdo->prepare("SELECT tasks.id, users.login, users.email, tasks.task, tasks.performed
+                                        FROM `tasks`
+                                        JOIN `users`
+                                        ON tasks.user_id = users.id
+                                        ORDER BY $sorting $sorting_type
+                                        LIMIT $start_from, $num_per_page");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function count_row()
+    {
+        $pdo = $this->db();
+        $query = $pdo->query("SELECT COUNT(*) FROM tasks");
+        return $query->fetchColumn();
+    }
+
+    public function add_task($login, $email, $task)
+    {
+        $pdo = $this->db();
+        $query = $pdo->query("SELECT id FROM users WHERE login='$login' AND email='$email'");
+        $user_id = $query->fetchColumn();
+
+        if ($user_id)
+        {
+            $query = $pdo->prepare('INSERT INTO tasks (id, user_id, task, performed) VALUES (NULL, :user_id, :task, 0)');
+            $result = $query->execute(array(
+                'user_id' => $user_id,
+                'task' => $task,
+            ));
+        }
+        else
+        {
+            $result = 0;
+        }
+
+        return $result;
+    }
+}

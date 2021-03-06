@@ -1,18 +1,38 @@
 <?php
 
 
-class Controller_user extends Controller
+class Controller_User extends Controller
 {
     function action_login()
     {
-        echo "доделать";
         if (isset($_POST) && !empty($_POST)) {
-            $login = isset($_POST['login']) ? $_POST['login'] : '';
+            $user = isset($_POST['user']) ? $_POST['user'] : '';
             $email = isset($_POST['email']) ? $_POST['email'] : '';
-            $task = isset($_POST['task']) ? $_POST['task'] : '';
 
-            $task_model = $this->require_model('task_model');
-            if($task_model->add_task($login, $email, $task)) {
+            $user_model = $this->require_model('user_model');
+            $check_login = $user_model->login($email);
+
+            if ($check_login)
+            {
+                $data = "Пользователь с таким email уже существует!";
+                $this->view->generate('user_view.php', 'template_view.php', $data);
+            }
+            else
+            {
+                echo 42;
+                exit;
+                $_SESSION['user'] = $user;
+                header('Location: http://' . $_SERVER['HTTP_HOST']);
+            }
+
+
+
+            if ($user)
+            {
+                $_SESSION['user'] =$user;
+            }
+
+            if($user_model->add_user($user, $email)) {
                 header('Location: http://' . $_SERVER['HTTP_HOST'] );
                 exit;
             }
@@ -24,7 +44,7 @@ class Controller_user extends Controller
         }
         else
         {
-            $this->view->generate('task_view.php', 'template_view.php');
+            $this->view->generate('user_view.php', 'template_view.php');
         }
     }
 }
