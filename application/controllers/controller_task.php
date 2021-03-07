@@ -12,6 +12,7 @@ class Controller_task extends Controller
 
             $task_model = $this->require_model('task_model');
             if($task_model->add_task($login, $email, $task)) {
+                $_SESSION['user'] = $login;
                 header('Location: http://' . $_SERVER['HTTP_HOST'] );
                 exit;
             }

@@ -12,9 +12,9 @@ class Controller_User extends Controller
             $password = isset($_POST['password']) ? $_POST['password'] : '';
 
             $user_model = $this->require_model('user_model');
-            $user = $user_model->login($user, $email, $password);
+            $count_user = $user_model->login($user, $email, $password);
 
-            if ($user)
+            if ($count_user)
             {
                 $data = "Пользователь с таким email уже существует!";
                 $this->view->generate('user_view.php', 'template_view.php', $data);
