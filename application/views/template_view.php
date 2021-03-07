@@ -49,7 +49,7 @@
                         <?php if(isset($_SESSION['user'])):?>
                             <a class="nav-link" href="/user/logout/">Выйти</a>
                         <?php else:?>
-                            <a class="nav-link" href="/user/login/">Войти</a>
+                            <a class="nav-link" href="/user/login/">Регистрация</a>
                         <?php endif;?>
                     </li>
                 </ul>
