@@ -46,7 +46,12 @@
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/login">Войти</a>
+<!--                        <a class="nav-link" href="/user/login">Войти</a>-->
+                        <?php if(isset($_SESSION['user'])):?>
+                            <a class="nav-link" href="/user/logout/">Выйти</a>
+                        <?php else:?>
+                            <a class="nav-link" href="/user/login/">Войти</a>
+                        <?php endif;?>
                     </li>
                 </ul>
             </div>

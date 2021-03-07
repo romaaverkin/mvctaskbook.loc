@@ -18,7 +18,8 @@ class Controller_User extends Controller
             {
                 $data = "Пользователь с таким email уже существует!";
                 $this->view->generate('user_view.php', 'template_view.php', $data);
-            } else
+            }
+            else
             {
                 $_SESSION['user'] = $user;
                 header('Location: http://' . $_SERVER['HTTP_HOST']);
@@ -28,5 +29,12 @@ class Controller_User extends Controller
         {
             $this->view->generate('user_view.php', 'template_view.php');
         }
+    }
+
+    public function action_logout()
+    {
+        session_destroy();
+        header('Location: http://' . $_SERVER['HTTP_HOST']);
+        exit;
     }
 }
