@@ -18,7 +18,7 @@ class User_Model extends Model
         else
         {
             $query = $pdo->prepare('INSERT INTO users (id, login, email, password, role_id) VALUES (NULL, :login, :email, :password, 2)');
-            $result = $query->execute(array(
+            $query->execute(array(
                 'login' => $user,
                 'email' => $email,
                 'password' => $password,
