@@ -39,8 +39,8 @@
                             <li><a class="dropdown-item" href="/?sort=login&sort_type=desc">По имени от Я до А</a></li>
                             <li><a class="dropdown-item" href="/?sort=email&sort_type=asc">По email от А до Я</a></li>
                             <li><a class="dropdown-item" href="/?sort=email&sort_type=desc">По email от Я до А</a></li>
-                            <li><a class="dropdown-item" href="/?sort=performed&sort_type=asc">По статусу сначала выполненные</a></li>
-                            <li><a class="dropdown-item" href="/?sort=performed&sort_type=desc">По статусу сначала не выполненные</a></li>
+                            <li><a class="dropdown-item" href="/?sort=performed&sort_type=desc">По статусу сначала выполненные</a></li>
+                            <li><a class="dropdown-item" href="/?sort=performed&sort_type=asc">По статусу сначала не выполненные</a></li>
                         </ul>
                     </li>
                 </ul>
